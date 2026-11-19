@@ -1,0 +1,29 @@
+<?php
+
+namespace app\controllers\config;
+
+use app\controllers\historias\HistoriasController;
+use app\controllers\historias\HistoriasControllerInterface;
+use app\controllers\informes\InformesController;
+use app\controllers\informes\InformesControllerInterface;
+use app\controllers\sprints\SprintsController;
+use app\controllers\sprints\SprintsControllerInterface;
+use app\models\config\ModelsConfig;
+
+class ControllersConfig
+{
+    public static function get_sprints_controller(): SprintsControllerInterface
+    {
+        return new SprintsController(ModelsConfig::get_sprints_respository());
+    }
+
+    public static function get_historias_controller(): HistoriasControllerInterface
+    {
+        return new HistoriasController(ModelsConfig::get_historias_respository());
+    }
+
+    public static function get_informes_controller(): InformesControllerInterface
+    {
+        return new InformesController(ModelsConfig::get_historias_respository());
+    }
+}
