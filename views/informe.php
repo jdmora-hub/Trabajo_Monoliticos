@@ -74,7 +74,7 @@ $informe_general = $controller_informe->get_informe_general();
     </table>
     <br><br>
 
-    <h2>Informe por sprint (general por sprint)</h2>
+    <h2>Informe por sprint</h2>
     <table>
         <thead>
             <tr>
@@ -103,7 +103,7 @@ $informe_general = $controller_informe->get_informe_general();
     </table>
     <br><br>
 
-    <h2>Informe general (total)</h2>
+    <h2>Informe general</h2>
     <table>
         <thead>
             <tr>

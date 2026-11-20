@@ -27,7 +27,6 @@ $sprints = $sprint_controller->get_sprints_all();
 $historia_controller = ControllersConfig::get_historias_controller();
 $historias = $historia_controller->get_historias_all();
 
-// Agrupar historias por sprint
 $historias_por_sprint = [];
 foreach ($historias as $historia) {
     $sid = $historia->get_sprint_id();
@@ -52,9 +51,7 @@ foreach ($historias as $historia) {
     <h1>Gestor de Historias de Usuario</h1>
     <br>
     <a href="sprint_form.php">Crear sprint</a>
-    &nbsp;&nbsp;
     <a href="historia_form.php">Crear historia de usuario</a>
-    &nbsp;&nbsp;
     <a href="informe.php">Ver informe</a>
     <br><br>
 
@@ -73,11 +70,11 @@ foreach ($historias as $historia) {
         <?php foreach ($sprints as $sprint): ?>
             <h2>Sprint: <?php echo $sprint->get_nombre(); ?> (<?php echo $sprint->get_fecha_inicio(); ?> al <?php echo $sprint->get_fecha_fin(); ?>)</h2>
             <br>
-            <a href="historia_form.php?sprint_id=<?php echo $sprint->get_id(); ?>">+ Nueva historia en este sprint</a>
+            <a href="historia_form.php?sprint_id=<?php echo $sprint->get_id(); ?>"> Nueva historia en este sprint</a>
             &nbsp;&nbsp;
             <a href="sprint_form.php?id=<?php echo $sprint->get_id(); ?>">Editar sprint</a>
             &nbsp;&nbsp;
-            <a href="operaciones/borrar_sprint.php?id=<?php echo $sprint->get_id(); ?>" onclick="return confirm('¿Estás seguro de eliminar este sprint? Se eliminarán también sus historias.')">Eliminar sprint</a>
+            <a href="operaciones/borrar_sprint.php?id=<?php echo $sprint->get_id(); ?>" onclick="return confirm('¿Estás seguro de eliminar este sprint?')">Eliminar sprint</a>
             <br><br>
 
             <?php

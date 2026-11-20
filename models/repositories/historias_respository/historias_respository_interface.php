@@ -24,3 +24,4 @@ interface HistoriasRespositoryInterface
 
     public function get_informe_general(): array;
 }
+?>

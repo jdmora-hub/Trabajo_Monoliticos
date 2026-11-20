@@ -48,3 +48,4 @@ class HistoriasController implements HistoriasControllerInterface
         return $this->historia_model->delete_historia($id);
     }
 }
+?>

@@ -43,3 +43,4 @@ class SprintsController implements SprintsControllerInterface
         return $this->sprint_model->delete_sprint($id);
     }
 }
+?>

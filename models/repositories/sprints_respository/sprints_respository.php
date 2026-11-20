@@ -59,3 +59,4 @@ class SprintsRespository implements SprintsRespositoryInterface
         return $this->historias_db->query($sql);
     }
 }
+?>

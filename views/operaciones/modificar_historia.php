@@ -22,3 +22,4 @@ if ($ok) {
 } else {
     header("Location: ../inicio.php?error=1");
 }
+?>

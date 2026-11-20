@@ -40,3 +40,4 @@ class HistoriasDB implements HistoriasDBInterface
         return $result;
     }
 }
+?>

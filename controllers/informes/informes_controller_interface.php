@@ -10,3 +10,4 @@ interface InformesControllerInterface
 
     public function get_informe_general(): array;
 }
+?>

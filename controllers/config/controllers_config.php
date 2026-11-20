@@ -27,3 +27,4 @@ class ControllersConfig
         return new InformesController(ModelsConfig::get_historias_respository());
     }
 }
+?>

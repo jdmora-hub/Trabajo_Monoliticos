@@ -87,3 +87,4 @@ class Historia
         return $this->updated_at;
     }
 }
+?>

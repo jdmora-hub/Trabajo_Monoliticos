@@ -29,3 +29,4 @@ class InformesController implements InformesControllerInterface
         return $this->historia_model->get_informe_general();
     }
 }
+?>

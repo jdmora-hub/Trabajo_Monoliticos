@@ -52,3 +52,4 @@ class Sprint
         return $this->updated_at;
     }
 }
+?>

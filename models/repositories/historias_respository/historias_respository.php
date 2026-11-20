@@ -119,3 +119,4 @@ class HistoriasRespository implements HistoriasRespositoryInterface
         return $result[0];
     }
 }
+?>

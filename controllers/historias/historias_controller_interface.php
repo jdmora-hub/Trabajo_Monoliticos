@@ -18,3 +18,4 @@ interface HistoriasControllerInterface
 
     public function delete_historia(int $id): bool;
 }
+?>
