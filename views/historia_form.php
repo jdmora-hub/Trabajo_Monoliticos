@@ -57,71 +57,56 @@ if (!empty($_GET['sprint_id'])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $titulo; ?></title>
-    <link rel="stylesheet" href="../public/css/style.css">
-</head>
-
-<body>
-    <h1><?php echo $titulo; ?></h1>
-    <br>
-    <a href="inicio.php">Volver</a>
-    <br>
-    <form action="<?php echo $action; ?>" method="post">
-        <input type="hidden" name="id" value="<?php echo $id; ?>">
-        <div>
-            <label for="titulo">Título:</label>
-            <input type="text" id="titulo" name="titulo" value="<?php echo $titulo_historia; ?>" required>
-        </div>
-        <div>
-            <label for="descripcion">Descripción:</label>
-            <textarea id="descripcion" name="descripcion" required><?php echo $descripcion; ?></textarea>
-        </div>
-        <div>
-            <label for="responsable">Responsable:</label>
-            <input type="text" id="responsable" name="responsable" value="<?php echo $responsable; ?>" required>
-        </div>
-        <div>
-            <label for="estado">Estado:</label>
-            <select id="estado" name="estado">
-                <option value="nueva" <?php echo $estado == 'nueva' ? 'selected' : ''; ?>>Nueva</option>
-                <option value="activa" <?php echo $estado == 'activa' ? 'selected' : ''; ?>>Activa</option>
-                <option value="finalizada" <?php echo $estado == 'finalizada' ? 'selected' : ''; ?>>Finalizada</option>
-                <option value="impedimento" <?php echo $estado == 'impedimento' ? 'selected' : ''; ?>>Impedimento</option>
-            </select>
-        </div>
-        <div>
-            <label for="puntos">Puntos de complejidad:</label>
-            <input type="number" id="puntos" name="puntos" min="0" value="<?php echo $puntos; ?>" required>
-        </div>
-        <div>
-            <label for="fecha_creacion">Fecha de creación:</label>
-            <input type="date" id="fecha_creacion" name="fecha_creacion" value="<?php echo $fecha_creacion; ?>" required>
-        </div>
-        <div>
-            <label for="fecha_finalizacion">Fecha de finalización:</label>
-            <input type="date" id="fecha_finalizacion" name="fecha_finalizacion" value="<?php echo $fecha_finalizacion; ?>">
-        </div>
-        <div>
-            <label for="sprint_id">Sprint:</label>
-            <select id="sprint_id" name="sprint_id" required>
-                <option value="">Seleccionar sprint</option>
-                <?php foreach ($sprints as $sprint): ?>
-                    <option value="<?php echo $sprint->get_id(); ?>" <?php echo $sprint_id == $sprint->get_id() ? 'selected' : ''; ?>>
-                        <?php echo $sprint->get_nombre(); ?> (<?php echo $sprint->get_fecha_inicio(); ?> al <?php echo $sprint->get_fecha_fin(); ?>)
-                    </option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-        <div>
-            <button type="submit">Guardar</button>
-        </div>
-    </form>
-</body>
-
-</html>
+<?php require __DIR__ . '/partials/layout.php';
+ui_header('Historias de Usuario', 'historias.php'); ?>
+<form id="editor" action="<?php echo $action; ?>" method="post">
+    <h3><?php echo ui_escape($titulo); ?></h3>
+    <input type="hidden" name="id" value="<?php echo ui_escape($id); ?>">
+    <div>
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" value="<?php echo ui_escape($titulo_historia); ?>" required>
+    </div>
+    <div>
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" required><?php echo ui_escape($descripcion); ?></textarea>
+    </div>
+    <div>
+        <label for="responsable">Responsable:</label>
+        <input type="text" id="responsable" name="responsable" value="<?php echo ui_escape($responsable); ?>" required>
+    </div>
+    <div>
+        <label for="estado">Estado:</label>
+        <select id="estado" name="estado">
+            <option value="nueva" <?php echo $estado == 'nueva' ? 'selected' : ''; ?>>Nueva</option>
+            <option value="activa" <?php echo $estado == 'activa' ? 'selected' : ''; ?>>Activa</option>
+            <option value="finalizada" <?php echo $estado == 'finalizada' ? 'selected' : ''; ?>>Finalizada</option>
+            <option value="impedimento" <?php echo $estado == 'impedimento' ? 'selected' : ''; ?>>Impedimento</option>
+        </select>
+    </div>
+    <div>
+        <label for="puntos">Puntos de complejidad:</label>
+        <input type="number" id="puntos" name="puntos" min="0" value="<?php echo ui_escape($puntos); ?>" required>
+    </div>
+    <div>
+        <label for="fecha_creacion">Fecha de creación:</label>
+        <input type="date" id="fecha_creacion" name="fecha_creacion" value="<?php echo ui_escape($fecha_creacion); ?>" required>
+    </div>
+    <div>
+        <label for="fecha_finalizacion">Fecha de finalización:</label>
+        <input type="date" id="fecha_finalizacion" name="fecha_finalizacion" value="<?php echo ui_escape($fecha_finalizacion); ?>">
+    </div>
+    <div>
+        <label for="sprint_id">Sprint:</label>
+        <select id="sprint_id" name="sprint_id" required>
+            <option value="">Seleccionar sprint</option>
+            <?php foreach ($sprints as $sprint): ?>
+                <option value="<?php echo $sprint->get_id(); ?>" <?php echo $sprint_id == $sprint->get_id() ? 'selected' : ''; ?>>
+                    <?php echo ui_escape($sprint->get_nombre()); ?> (<?php echo $sprint->get_fecha_inicio(); ?> al <?php echo $sprint->get_fecha_fin(); ?>)
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+    <div>
+        <a class="button secondary" href="historias.php">Cancelar</a> <button type="submit">Guardar</button>
+    </div>
+</form>

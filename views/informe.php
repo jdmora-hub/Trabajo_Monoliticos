@@ -29,53 +29,16 @@ $informe_sprint = $controller_informe->get_informe_por_sprint();
 $informe_general = $controller_informe->get_informe_general();
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informe de Historias de Usuario</title>
-    <link rel="stylesheet" href="../public/css/style.css">
-</head>
-
-<body>
-    <h1>Informe de Historias de Usuario</h1>
-    <br>
-    <a href="inicio.php">Volver</a>
-    <br><br>
-
-    <h2>Informe por responsable</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Responsable</th>
-                <th>Total</th>
-                <th>Finalizadas</th>
-                <th>Pendientes</th>
-                <th>Impedimentos</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (empty($informe_responsable)): ?>
-                <tr><td colspan="5">No hay datos.</td></tr>
-            <?php else: ?>
-                <?php foreach ($informe_responsable as $fila): ?>
-                    <tr>
-                        <td><?php echo $fila['responsable']; ?></td>
-                        <td><?php echo $fila['total']; ?></td>
-                        <td><?php echo $fila['finalizadas']; ?></td>
-                        <td><?php echo $fila['pendientes']; ?></td>
-                        <td><?php echo $fila['impedimentos']; ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </tbody>
-    </table>
-    <br><br>
-
+<?php require __DIR__ . '/partials/layout.php'; ui_header('Informes', 'informe.php'); ?>
+    <h2>Informe General</h2>
+    <ul>
+        <li><strong>Total de historias:</strong> <?php echo $informe_general['total']; ?></li>
+        <li><strong>Finalizadas:</strong> <?php echo $informe_general['finalizadas']; ?></li>
+        <li><strong>Pendientes:</strong> <?php echo $informe_general['pendientes']; ?></li>
+        <li><strong>Con impedimentos:</strong> <?php echo $informe_general['impedimentos']; ?></li>
+    </ul>
     <h2>Informe por sprint</h2>
-    <table>
+    <div class="table-scroll"><table>
         <thead>
             <tr>
                 <th>Sprint</th>
@@ -91,7 +54,7 @@ $informe_general = $controller_informe->get_informe_general();
             <?php else: ?>
                 <?php foreach ($informe_sprint as $fila): ?>
                     <tr>
-                        <td><?php echo $fila['sprint']; ?></td>
+                        <td><?php echo ui_escape($fila['sprint']); ?></td>
                         <td><?php echo $fila['total']; ?></td>
                         <td><?php echo $fila['finalizadas']; ?></td>
                         <td><?php echo $fila['pendientes']; ?></td>
@@ -100,28 +63,36 @@ $informe_general = $controller_informe->get_informe_general();
                 <?php endforeach; ?>
             <?php endif; ?>
         </tbody>
-    </table>
-    <br><br>
+    </table></div>
 
-    <h2>Informe general</h2>
-    <table>
+
+    <h2>Informe por responsable</h2>
+    <div class="table-scroll"><table>
         <thead>
             <tr>
-                <th>Total historias</th>
+                <th>Responsable</th>
+                <th>Total</th>
                 <th>Finalizadas</th>
                 <th>Pendientes</th>
                 <th>Impedimentos</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><?php echo $informe_general['total']; ?></td>
-                <td><?php echo $informe_general['finalizadas']; ?></td>
-                <td><?php echo $informe_general['pendientes']; ?></td>
-                <td><?php echo $informe_general['impedimentos']; ?></td>
-            </tr>
+            <?php if (empty($informe_responsable)): ?>
+                <tr><td colspan="5">No hay datos.</td></tr>
+            <?php else: ?>
+                <?php foreach ($informe_responsable as $fila): ?>
+                    <tr>
+                        <td><?php echo ui_escape($fila['responsable']); ?></td>
+                        <td><?php echo $fila['total']; ?></td>
+                        <td><?php echo $fila['finalizadas']; ?></td>
+                        <td><?php echo $fila['pendientes']; ?></td>
+                        <td><?php echo $fila['impedimentos']; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </tbody>
-    </table>
-</body>
+    </table></div>
 
-</html>
+
+<?php 
